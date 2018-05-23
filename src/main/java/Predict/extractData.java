@@ -1,13 +1,23 @@
 package Predict;
 
+import Utils.FileUtils;
+
 import java.io.*;
 import java.util.*;
 
 public class extractData {
     public static void main(String[] args) throws Exception{
-        String fileNames = "C:/Users/Administrator/Desktop/pamap/subject2.csv";
+        String fileNames = "C:/Users/Administrator/Desktop/lxl.csv";
         getData(fileNames);
 
+    }
+    public static void processData(String fileNames) throws Exception{
+        String[] files = FileUtils.getFileName(fileNames);
+        for(int i=0;i<fileNames.length();i++){
+            BufferedReader bufferedReader = new BufferedReader(new FileReader(new File(fileNames)));
+            BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(new File("C:/Users/Administrator/Desktop/pamap/subject2_hand_chest_shoes.csv")));
+            String line = bufferedReader.readLine();
+        }
     }
     public static void getData(String fileNames) throws Exception{
         TreeMap<String,Integer> treeMap = new TreeMap<String, Integer>();

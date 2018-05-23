@@ -16,7 +16,7 @@ public class cacheData {
         RedisUtils.deleteKeys("219.216.65.44",6379,key1);
         String key2 = "Test*";
         RedisUtils.deleteKeys("219.216.65.44",6379,key2);
-        String fileNames = "C:/Users/Administrator/Desktop/Test_pamap/960";
+        String fileNames = "C:/Users/Administrator/Desktop/Test_pamap/192";
         int num = FileUtils.getNumFile(fileNames);
         Jedis redis = new Jedis("219.216.65.44",6379);
         String[]files = FileUtils.getFileName(fileNames);
