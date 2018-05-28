@@ -1,8 +1,14 @@
 package Utils;
 
+import au.com.bytecode.opencsv.CSVReader;
+
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileReader;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.TreeSet;
 
 public class FileUtils {
     public static void main(String[] args) {
@@ -14,6 +20,30 @@ public class FileUtils {
             System.out.println(a[i]+"  "+getNumColumn(a[i]));
         }
     }
+    /**
+     * 提取标签
+     */
+    public static List<String> getLabels(String path) throws Exception{
+        File file = new File(path) ;
+        if(file.exists()){
+            CSVReader reader=new CSVReader(new FileReader(path));
+            List<String[]> list = reader.readAll();
+            reader.close();
+            TreeSet<String> setKinds = new TreeSet<String>() ;
+            String label ;
+            for(int i = 0; i < list.size(); i ++){
+                label = list.get(i)[list.get(i).length - 1] ;
+                setKinds.add(label) ;
+            }
+            List<String> labels = new ArrayList<String>() ;
+            for(String str : setKinds){
+                labels.add(str) ;
+            }
+            return labels ;
+        }
+        return null ;
+    }
+
     /**
      * 获取文件的列数
      */

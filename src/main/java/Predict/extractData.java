@@ -7,9 +7,35 @@ import java.util.*;
 
 public class extractData {
     public static void main(String[] args) throws Exception{
-        String fileNames = "C:/Users/Administrator/Desktop/lxl.csv";
-        getData(fileNames);
+        String fileName = "C:/Users/Administrator/Desktop/zk.csv";
+        getData(fileName);
 
+    }
+    public static void getData(String fileName) throws Exception{
+        TreeMap<String,Integer> treeMap = new TreeMap<String, Integer>();
+        BufferedReader bufferedReader = new BufferedReader(new FileReader(new File(fileName)));
+        BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(new File("C:/Users/Administrator/Desktop/zk_new.csv")));
+        String line = bufferedReader.readLine();
+        while(line!=null){
+            String str[] = line.split(",");
+            int k = str.length-1;
+            if(treeMap.keySet().contains(str[k])){
+                int n = treeMap.get(str[k]) + 1;
+                treeMap.put(str[k],n);
+            }else{
+                treeMap.put(str[k],1);
+            }
+            if(treeMap.get(str[k])<=8000) {
+                bufferedWriter.append(line+"\n");
+            }
+            line = bufferedReader.readLine();
+        }
+        bufferedReader.close();
+        bufferedWriter.close();
+        System.out.println("动作种类："+treeMap.keySet().size());
+        for(String key:treeMap.keySet()){
+            System.out.println(key+" "+treeMap.get(key));
+        }
     }
     public static void processData(String fileNames) throws Exception{
         String[] files = FileUtils.getFileName(fileNames);
@@ -19,7 +45,7 @@ public class extractData {
             String line = bufferedReader.readLine();
         }
     }
-    public static void getData(String fileNames) throws Exception{
+    public static void getData_pamap(String fileNames) throws Exception{
         TreeMap<String,Integer> treeMap = new TreeMap<String, Integer>();
         BufferedReader bufferedReader = new BufferedReader(new FileReader(new File(fileNames)));
         BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(new File("C:/Users/Administrator/Desktop/pamap/subject2_hand_chest_shoes.csv")));
