@@ -8,13 +8,14 @@ import java.util.*;
 public class SubData {
     public static void main(String[] args) throws Exception{
 //        String fileNames = "C:/Users/Administrator/Desktop/Source_train_wrist/sensor_0.csv";
-        String fileNames = "C:/Users/Administrator/Desktop/pb_new2.csv";
+//        String fileNames = "C:/Users/Administrator/Desktop/experiment/DataSet/data5_28/preprocess/lefthand.csv";
+        String fileNames = "C:/Users/Administrator/Desktop/right.csv";
         getData(fileNames);
     }
     public static void getData(String fileNames) throws Exception{
         TreeMap<String,Integer> treeMap = new TreeMap<String, Integer>();
         BufferedReader bufferedReader = new BufferedReader(new FileReader(new File(fileNames)));
-        BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(new File("C:/Users/Administrator/Desktop/pb_test.csv")));
+        BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(new File("C:/Users/Administrator/Desktop/right_test.csv")));
         String line = bufferedReader.readLine();
         while(line!=null){
             String str[] = line.split(",");
@@ -24,7 +25,7 @@ public class SubData {
             }else{
                 treeMap.put(str[str.length-1],1);
             }
-            if(treeMap.get(str[str.length-1])>4000&&treeMap.get(str[str.length-1])<=8000) {
+            if(treeMap.get(str[str.length-1])>400) {
                 bufferedWriter.append(line+"\n");
             }
             line = bufferedReader.readLine();
